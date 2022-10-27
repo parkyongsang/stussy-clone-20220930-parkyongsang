@@ -1,2 +1,12 @@
-package com.stussy.stussyclone20220930yongsang.dto.admin;public class ProductImgReqDto {
+package com.stussy.stussyclone20220930yongsang.dto.admin;
+
+import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
+@Data
+public class ProductImgReqDto {
+    private int pdtId;
+    private List<MultipartFile> files;
 }
