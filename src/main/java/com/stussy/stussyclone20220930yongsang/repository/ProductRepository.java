@@ -1,6 +1,7 @@
 package com.stussy.stussyclone20220930yongsang.repository;
 
 import com.stussy.stussyclone20220930yongsang.domain.CollectionsProduct;
+import com.stussy.stussyclone20220930yongsang.domain.Product;
 import com.stussy.stussyclone20220930yongsang.dto.CollectionListRespDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,4 +12,6 @@ import java.util.Map;
 @Mapper
 public interface ProductRepository {
     public List<CollectionsProduct> getProductList(Map<String, Object> map) throws Exception;
+
+    public List<Product> getProduct(int pdt_id) throws Exception;
 }

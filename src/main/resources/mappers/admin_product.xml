@@ -97,7 +97,7 @@
                 0,
                 #{img.pdt_id},
                 #{img.origin_name},
-                #{img.origin_name},
+                #{img.save_name},
                 now(),
                 now()
             )

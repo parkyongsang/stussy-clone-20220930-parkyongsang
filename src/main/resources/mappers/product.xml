@@ -28,6 +28,9 @@
             </if>
         group by
             pm.id
-        limit #{index}, 16;
+        limit #{index}, 16
+    </select>
+    <select id="getProduct" resultType="com.stussy.stussyclone20220930yongsang.domain.Product">
+        
     </select>
 </mapper>
