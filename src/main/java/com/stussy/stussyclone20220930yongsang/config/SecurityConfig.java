@@ -1,6 +1,8 @@
 package com.stussy.stussyclone20220930yongsang.config;
 
 import com.stussy.stussyclone20220930yongsang.security.AuthFailureHandler;
+import com.stussy.stussyclone20220930yongsang.service.PrincipalOauth2Service;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final PrincipalOauth2Service principalOauth2Service;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -22,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.httpBasic().disable();
         http.authorizeRequests()
-                .antMatchers("/account/mypage", "/index")
+                .antMatchers("/account/mypage", "/index", "/checkout")
                 .authenticated()
 //                .antMatchers("/admin/**")
 //                .hasRole("ADMIN")
@@ -33,9 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .usernameParameter("email")
-                .loginPage("/account/login") // login page Get 요청
-                .loginProcessingUrl("/account/login") // login service Post 요청
+                .loginPage("/account/login")            // login page Get요청
+                .loginProcessingUrl("/account/login")   // login service Post요청
                 .failureHandler(new AuthFailureHandler())
+                .defaultSuccessUrl("/index")
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(principalOauth2Service)
+                .and()
                 .defaultSuccessUrl("/index");
     }
 }

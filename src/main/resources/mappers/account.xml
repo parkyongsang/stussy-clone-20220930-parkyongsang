@@ -21,8 +21,16 @@
         <result property="update_date" column="update_date"/>
         <collection property="role" resultMap="role"/>
     </resultMap>
+    <update id="updateProvider" parameterType="com.stussy.stussyclone20220930yongsang.domain.User">
+        update
+            user_mst
+        set
+            provider = #{provider}
+            update_date = now()
+        where
+            id = #{id}
 
-
+    </update>
 
 
     <select id="findUserByEmail" parameterType="String" resultMap="user">
@@ -42,7 +50,12 @@
         where
             um.email = #{email}
     </select>
-    <insert id="saveUser" parameterType="com.stussy.stussyclone20220930yongsang.domain.User">
+    <insert id="saveUser"
+            parameterType="com.stussy.stussyclone20220930yongsang.domain.User"
+            useGeneratedKeys="true"
+            keyProperty="id"
+
+    >
         insert into
             user_mst
         values(

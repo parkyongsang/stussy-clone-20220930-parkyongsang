@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220930yongsang.api;
 
+import com.stussy.stussyclone20220930yongsang.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220930yongsang.dto.CMRespDto;
 import com.stussy.stussyclone20220930yongsang.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,10 @@ public class ProductApi {
 
     private final ProductService productService;
 
-
+    @LogAspect
     @GetMapping("/collections/{category}")
     public ResponseEntity<?> getCollections(@PathVariable String category, int page) throws Exception {
+
         return ResponseEntity.ok(new CMRespDto<>("Successfully", productService.getProductList(category, page)));
     }
 
@@ -27,4 +29,5 @@ public class ProductApi {
 
         return ResponseEntity.ok(new CMRespDto<>("Successfully", productService.getProduct(pdtId)));
     }
+
 }

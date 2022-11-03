@@ -3,6 +3,7 @@ package com.stussy.stussyclone20220930yongsang.service;
 import com.stussy.stussyclone20220930yongsang.domain.User;
 import com.stussy.stussyclone20220930yongsang.dto.RegisterReqDto;
 import com.stussy.stussyclone20220930yongsang.exception.CustomInternalServerErrorException;
+import com.stussy.stussyclone20220930yongsang.exception.CustomValidationException;
 import com.stussy.stussyclone20220930yongsang.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
              Map<String, String> errorMap = new HashMap<String, String>();
              errorMap.put("email", "이미 사용중인 이메일 주소입니다.");
 
-            throw new ValidationException("Email 중복");
+            throw new CustomValidationException("Duplicated email", errorMap);
         }
 
     }
