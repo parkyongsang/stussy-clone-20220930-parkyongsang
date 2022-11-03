@@ -9,7 +9,7 @@ class ImportApi {
 
     addPaymentEvent() {
         document.querySelector(".payment-button").onclick = () => {
-            this.requesyPay();
+            this.requestPay();
         }
     }
     requestPay() {
