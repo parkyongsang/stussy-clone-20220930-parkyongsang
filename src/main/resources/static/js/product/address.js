@@ -20,7 +20,7 @@ class AddressApi {
                 addressZonecode.value = data.zonecode;
                 addressSido.value = data.sido;
                 addressSigungu.value = data.sigungu;
-                addressAll.value = data.address + `${data.buildingName != "" ? "(" + data.buildingName + ")":""}`;
+                addressAll.value = data.address + `${data.buildingName != "" ? "(" + data.buildingName + ")" : ""}`;
             }
         });
     }
@@ -28,9 +28,9 @@ class AddressApi {
     addAddressButtonEvent() {
         document.querySelector(".address-button").onclick = () => {
             this.#daumApi.open();
-
         }
     }
-
 }
+
+
 

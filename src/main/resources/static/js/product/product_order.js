@@ -1,9 +1,9 @@
 class ImportApi {
-    IMP = null;
+    #IMP = null;
     
     constructor() {
         this.#IMP = window.IMP;    
-        this.IMP.init("imp11788573");
+        this.#IMP.init("imp11788573");
         this.addPaymentEvent();
     }
 
@@ -24,7 +24,7 @@ class ImportApi {
         const phone = document.querySelector(".phone-number").value;
         
         // IMP.request_pay(param, callback) 결제창 호출
-        IMP.request_pay({ // param
+        this.#IMP.request_pay({ // param
             pg: "kakaopay",
             pay_method: "card",
             merchant_uid: "PRODUCT-" + new Date().getTime(),
